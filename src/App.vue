@@ -38,18 +38,18 @@
 			title: anime.title,
 			image: anime.images.jpg.image_url,
 			total_episodes: anime.episodes,
-			watchedEpisodes: 0,
+			watched_episodes: 0,
 		});
+
+		localStorage.setItem('myAnime', JSON.stringify(myAnime.value));
 	};
 
-	localStorage.setItem('myAnime', JSON.stringify(myAnime.value));
-
 	const increaseWatch = (anime) => {
-		anime.watchedEpisodes++;
+		anime.watched_episodes++;
 		localStorage.setItem('myAnime', JSON.stringify(myAnime.value));
 	};
 	const decreaseWatch = (anime) => {
-		anime.watchedEpisodes--;
+		anime.watched_episodes--;
 		localStorage.setItem('myAnime', JSON.stringify(myAnime.value));
 	};
 
@@ -98,17 +98,30 @@
 					</div>
 				</div>
 			</div>
-			<div v-if="searchResults.length">
-				<div v-for="anime in searchResults" :key="anime.mal_id">
-					<img :src="anime.images.jpg.image_url" alt="anime" />
+			<div v-if="myAnime.length">
+				<h2 class="text-2xl font-bold underline underline-offset-4">
+					My Anime
+				</h2>
+				<div v-for="anime in myAnimeAsc" :key="anime.mal_id">
+					<img :src="anime.image" alt="anime" />
+					<h3>{{ anime.title }}</h3>
+					<span class="flex-1"></span>
 					<div>
-						<h2>{{ anime.title }}</h2>
-						<p :title="anime.synopsis" v-if="anime.synopsis">
-							{{ anime.synopsis.slice(0, 200) }}...
-						</p>
-						<span class="flex-1"></span>
-						<button @click="addAnime(anime)">Add to my hub</button>
+						{{ anime.watched_episodes }} /
+						{{ anime.total_episodes }}
 					</div>
+					<button
+						v-if="anime.watched_episodes !== anime.total_episodes"
+						@click="increaseWatch(anime)"
+					>
+						+
+					</button>
+					<button
+						v-if="anime.watched_episodes > 0"
+						@click="decreaseWatch(anime)"
+					>
+						-
+					</button>
 				</div>
 			</div>
 		</div>
