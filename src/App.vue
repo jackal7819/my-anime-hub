@@ -52,12 +52,65 @@
 		anime.watchedEpisodes--;
 		localStorage.setItem('myAnime', JSON.stringify(myAnime.value));
 	};
-	
+
 	onMounted(() => {
 		myAnime.value = JSON.parse(localStorage.getItem('myAnime')) || [];
 	});
 </script>
 
 <template>
-	<h1 class="text-3xl font-bold underline">Hello world!</h1>
+	<main
+		class="flex items-center justify-center min-h-screen antialiased text-slate-400 bg-slate-900"
+	>
+		<div
+			class="container flex flex-col gap-5 p-10 text-center border rounded-lg border-slate-400"
+		>
+			<h1 class="text-3xl font-bold underline underline-offset-4">
+				My Anime Hub
+			</h1>
+			<form @submit.prevent="searchAnime">
+				<div class="flex justify-center">
+					<input
+						type="text"
+						placeholder="Search anime..."
+						v-model="query"
+						@input="handleInput"
+						class="p-2 text-lg border-2 rounded-l-lg outline-none focus:border-sky-500"
+					/>
+					<button
+						type="submit"
+						class="px-4 text-lg text-white duration-300 bg-pink-500 rounded-r-lg hover:bg-pink-600 active:bg-pink-700 disabled:bg-sky-950"
+					>
+						Search
+					</button>
+				</div>
+			</form>
+			<div v-if="searchResults.length">
+				<div v-for="anime in searchResults" :key="anime.mal_id">
+					<img :src="anime.images.jpg.image_url" alt="anime" />
+					<div>
+						<h2>{{ anime.title }}</h2>
+						<p :title="anime.synopsis" v-if="anime.synopsis">
+							{{ anime.synopsis.slice(0, 200) }}...
+						</p>
+						<span class="flex-1"></span>
+						<button @click="addAnime(anime)">Add to my hub</button>
+					</div>
+				</div>
+			</div>
+			<div v-if="searchResults.length">
+				<div v-for="anime in searchResults" :key="anime.mal_id">
+					<img :src="anime.images.jpg.image_url" alt="anime" />
+					<div>
+						<h2>{{ anime.title }}</h2>
+						<p :title="anime.synopsis" v-if="anime.synopsis">
+							{{ anime.synopsis.slice(0, 200) }}...
+						</p>
+						<span class="flex-1"></span>
+						<button @click="addAnime(anime)">Add to my hub</button>
+					</div>
+				</div>
+			</div>
+		</div>
+	</main>
 </template>
