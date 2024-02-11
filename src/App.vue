@@ -23,16 +23,16 @@
 		}
 	};
 
-	const handleInput = event => {
+	const handleInput = (event) => {
 		if (!event.target.value) {
 			searchResults.value = [];
 		}
-	}
+	};
 
-	const addAnime = anime => {
+	const addAnime = (anime) => {
 		searchResults.value = [];
 		query.value = '';
-		
+
 		myAnime.value.push({
 			id: anime.mal_id,
 			title: anime.title,
@@ -44,9 +44,18 @@
 
 	localStorage.setItem('myAnime', JSON.stringify(myAnime.value));
 
-	const increaseWatch = anime =>{
-		
-	}
+	const increaseWatch = (anime) => {
+		anime.watchedEpisodes++;
+		localStorage.setItem('myAnime', JSON.stringify(myAnime.value));
+	};
+	const decreaseWatch = (anime) => {
+		anime.watchedEpisodes--;
+		localStorage.setItem('myAnime', JSON.stringify(myAnime.value));
+	};
+	
+	onMounted(() => {
+		myAnime.value = JSON.parse(localStorage.getItem('myAnime')) || [];
+	});
 </script>
 
 <template>
