@@ -85,7 +85,7 @@
 					/>
 					<button
 						type="submit"
-						class="px-4 text-lg text-white duration-300 bg-pink-500 rounded-r-lg hover:bg-pink-600 active:bg-pink-700 disabled:bg-sky-950"
+						class="px-4 tracking-wide text-white uppercase duration-300 bg-pink-500 rounded-r-lg text hover:bg-pink-600 active:bg-pink-700 disabled:bg-sky-950"
 					>
 						Search
 					</button>
