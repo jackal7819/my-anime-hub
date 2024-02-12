@@ -1,8 +1,8 @@
-## My Anime Hub
+# My Anime Hub
 
 This is a Vue.js application where users can search for anime, add them to their list, and keep track of watched episodes. Here's a brief overview of its features:
 
-### Features:
+## Features:
 
 1. ***Search Anime***: Users can search for anime using the search bar. The application fetches data from the Jikan API.
 
@@ -12,7 +12,7 @@ This is a Vue.js application where users can search for anime, add them to their
 
 4. ***Local Storage*** : The application stores the user's anime list in the browser's local storage. This allows users to access their list even after refreshing the page or closing the browser.
 
-### Technologies Used:
+## Technologies Used:
 
 - ***Vue.js***: The application is built using Vue.js, a progressive JavaScript framework for building user interfaces.
 
@@ -20,15 +20,15 @@ This is a Vue.js application where users can search for anime, add them to their
 
 - ***Local Storage***: Browser's local storage is used to store the user's anime list persistently.
 
-### Design
+## Design
 
 - ***Tailwind CSS***: Powerful CSS framework for rapidly building custom user interfaces.
 
-### Development Tools
+## Development Tools
 
 - ***Vite***: Modern build tool for fast web development with JavaScript and TypeScript.
 
-### Usage:
+## Usage:
 
 1. Enter the name of the anime you want to search for in the search bar.
 2. Click the "Search" button to retrieve search results.
